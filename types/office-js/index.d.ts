@@ -4747,7 +4747,7 @@ declare namespace Office {
          *
          * @remarks
          *
-         * **Important**: In Outlook, `officeTheme` is supported starting in {@link https://learn.microsoft.com/javascript/api/requirement-sets/outlook/outlook-requirement-set-1.14 | Mailbox requirement set 1.14}.
+         * **Important**: In Outlook, `officeTheme` is supported starting in {@link https://learn.microsoft.com/javascript/api/requirement-sets/outlook/outlook-requirement-set-1-14 | Mailbox requirement set 1.14}.
          * It isn't supported in Outlook add-ins that implement {@link https://learn.microsoft.com/office/dev/add-ins/develop/event-based-activation | event-based activation}.
          */
         officeTheme: OfficeTheme;
@@ -7623,7 +7623,7 @@ declare namespace Office {
      * </table>
      *
      * **Important**: In Outlook, the Office theme API is supported starting in
-     * {@link https://learn.microsoft.com/javascript/api/requirement-sets/outlook/outlook-requirement-set-1.14 | Mailbox requirement set 1.14}.
+     * {@link https://learn.microsoft.com/javascript/api/requirement-sets/outlook/outlook-requirement-set-1-14 | Mailbox requirement set 1.14}.
      * It isn't supported in Outlook add-ins that implement {@link https://learn.microsoft.com/office/dev/add-ins/develop/event-based-activation | event-based activation}.
      */
     interface OfficeTheme {
@@ -7911,24 +7911,24 @@ declare namespace Office {
      *
      * The name of a setting is a string, while the value can be a string, number, boolean, null, object, or array.
      *
-     * The Settings object is automatically loaded as part of the Document object, and is available by calling the settings property of that object
+     * The Settings object is automatically loaded as part of the `Document` object, and is available by calling the settings property of that object
      * when the add-in is activated.
      *
-     * The developer is responsible for calling the saveAsync method after adding or deleting settings to save the settings in the document.
+     * The developer is responsible for calling the `saveAsync` method after adding or deleting settings to save the settings in the document.
      */
     interface Settings {
         /**
-         * Adds an event handler for the settingsChanged event.
+         * Adds an event handler for the `settingsChanged` event.
          *
-         * **Important**: Your add-in's code can register a handler for the settingsChanged event when the add-in is running with any Excel client, but
+         * **Important**: Your add-in's code can register a handler for the `settingsChanged` event when the add-in is running with any Excel client, but
          * the event will fire only when the add-in is loaded with a spreadsheet that is opened in Excel on the web, and more than one user is editing the
-         * spreadsheet (coauthoring). Therefore, effectively the settingsChanged event is supported only in Excel on the web in coauthoring scenarios.
+         * spreadsheet (coauthoring). Therefore, effectively the `settingsChanged` event is supported only in Excel on the web in coauthoring scenarios.
          *
          * @remarks
          *
          * **Requirement set**: {@link https://learn.microsoft.com/javascript/api/requirement-sets/common/office-add-in-requirement-sets#methods-that-arent-part-of-a-requirement-set | Not in a set}
          *
-         * You can add multiple event handlers for the specified eventType as long as the name of each event handler function is unique.
+         * You can add multiple event handlers for the specified `eventType` as long as the name of each event handler function is unique.
          *
          * @param eventType Specifies the type of event to add. Required.
          * @param handler The event handler function to add, whose only parameter is of type {@link Office.SettingsChangedEventArgs}. Required.
@@ -7950,27 +7950,27 @@ declare namespace Office {
          *   </tr>
          *   <tr>
          *     <td><code>AsyncResult.error</code></td>
-         *     <td>Access an Error object that provides error information if the operation failed.</td>
+         *     <td>Access an <code>Error</code> object that provides error information if the operation failed.</td>
          *   </tr>
          *   <tr>
          *     <td><code>AsyncResult.asyncContext</code></td>
-         *     <td>Define an item of any type that's returned in the AsyncResult object without being altered.</td>
+         *     <td>Define an item of any type that's returned in the <code>AsyncResult</code> object without being altered.</td>
          *   </tr>
          * </table>
          */
         addHandlerAsync(eventType: Office.EventType, handler: any, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<void>) => void): void;
         /**
-         * Adds an event handler for the settingsChanged event.
+         * Adds an event handler for the `settingsChanged` event.
          *
-         * **Important**: Your add-in's code can register a handler for the settingsChanged event when the add-in is running with any Excel client, but
+         * **Important**: Your add-in's code can register a handler for the `settingsChanged` event when the add-in is running with any Excel client, but
          * the event will fire only when the add-in is loaded with a spreadsheet that is opened in Excel on the web, and more than one user is editing the
-         * spreadsheet (coauthoring). Therefore, effectively the settingsChanged event is supported only in Excel on the web in coauthoring scenarios.
+         * spreadsheet (coauthoring). Therefore, effectively the `settingsChanged` event is supported only in Excel on the web in coauthoring scenarios.
          *
          * @remarks
          *
          * **Requirement set**: {@link https://learn.microsoft.com/javascript/api/requirement-sets/common/office-add-in-requirement-sets#methods-that-arent-part-of-a-requirement-set | Not in a set}
          *
-         * You can add multiple event handlers for the specified eventType as long as the name of each event handler function is unique.
+         * You can add multiple event handlers for the specified `eventType` as long as the name of each event handler function is unique.
          *
          * @param eventType Specifies the type of event to add. Required.
          * @param handler The event handler function to add, whose only parameter is of type {@link Office.SettingsChangedEventArgs}. Required.
@@ -7991,11 +7991,11 @@ declare namespace Office {
          *   </tr>
          *   <tr>
          *     <td><code>AsyncResult.error</code></td>
-         *     <td>Access an Error object that provides error information if the operation failed.</td>
+         *     <td>Access an <code>Error</code> object that provides error information if the operation failed.</td>
          *   </tr>
          *   <tr>
          *     <td><code>AsyncResult.asyncContext</code></td>
-         *     <td>Define an item of any type that's returned in the AsyncResult object without being altered.</td>
+         *     <td>Define an item of any type that's returned in the <code>AsyncResult</code> object without being altered.</td>
          *   </tr>
          * </table>
          */
@@ -8021,10 +8021,10 @@ declare namespace Office {
          * This method is useful in Excel, Word, and PowerPoint coauthoring scenarios when multiple instances of the same add-in are working against
          * the same document. Because each add-in is working against an in-memory copy of the settings loaded from the document at the time the user
          * opened it, the settings values used by each user can get out of sync. This can happen whenever an instance of the add-in calls the
-         * Settings.saveAsync method to persist all of that user's settings to the document. Calling the refreshAsync method from the event handler
-         * for the settingsChanged event of the add-in will refresh the settings values for all users.
+         * `Settings.saveAsync` method to persist all of that user's settings to the document. Calling the `refreshAsync` method from the event handler
+         * for the `settingsChanged` event of the add-in will refresh the settings values for all users.
          *
-         * In the callback function passed to the refreshAsync method, you can use the properties of the AsyncResult object to return the following
+         * In the callback function passed to the `refreshAsync` method, you can use the properties of the `AsyncResult` object to return the following
          * information.
          *
          * <table>
@@ -8034,7 +8034,7 @@ declare namespace Office {
          *   </tr>
          *   <tr>
          *     <td><code>AsyncResult.value</code></td>
-         *     <td>Access a Settings object with the refreshed values.</td>
+         *     <td>Access a <code>Settings</code> object with the refreshed values.</td>
          *   </tr>
          *   <tr>
          *     <td><code>AsyncResult.status</code></td>
@@ -8042,11 +8042,11 @@ declare namespace Office {
          *   </tr>
          *   <tr>
          *     <td><code>AsyncResult.error</code></td>
-         *     <td>Access an Error object that provides error information if the operation failed.</td>
+         *     <td>Access an <code>Error</code> object that provides error information if the operation failed.</td>
          *   </tr>
          *   <tr>
          *     <td><code>AsyncResult.asyncContext</code></td>
-         *     <td>Define an item of any type that's returned in the AsyncResult object without being altered.</td>
+         *     <td>Define an item of any type that's returned in the <code>AsyncResult</code> object without being altered.</td>
          *   </tr>
          * </table>
          *
@@ -8057,33 +8057,33 @@ declare namespace Office {
         /**
          * Removes the specified setting.
          *
-         * **Important**: Be aware that the Settings.remove method affects only the in-memory copy of the settings property bag. To persist the removal of
-         * the specified setting in the document, at some point after calling the Settings.remove method and before the add-in is closed, you must
-         * call the Settings.saveAsync method.
+         * **Important**: Be aware that the `Settings.remove` method affects only the in-memory copy of the settings property bag. To persist the removal of
+         * the specified setting in the document, at some point after calling the `Settings.remove` method and before the add-in is closed, you must
+         * call the `Settings.saveAsync` method.
          *
          * @remarks
          *
          * **Requirement set**: {@link https://learn.microsoft.com/javascript/api/requirement-sets/common/office-add-in-requirement-sets#settings | Settings}
          *
-         * null is a valid value for a setting. Therefore, assigning null to the setting will not remove it from the settings property bag.
+         * `null` is a valid value for a setting. Therefore, assigning `null` to the setting will not remove it from the settings property bag.
          *
          * @param settingName The case-sensitive name of the setting to remove.
          */
         remove(name: string): void;
         /**
-         * Removes an event handler for the settingsChanged event.
+         * Removes an event handler for the `settingsChanged` event.
          *
          * @remarks
          *
          * **Requirement set**: {@link https://learn.microsoft.com/javascript/api/requirement-sets/common/office-add-in-requirement-sets#methods-that-arent-part-of-a-requirement-set | Not in a set}
          *
-         * If the optional handler parameter is omitted when calling the removeHandlerAsync method, all event handlers for the specified eventType
+         * If the optional handler parameter is omitted when calling the `removeHandlerAsync` method, all event handlers for the specified `eventType`
          * will be removed.
          *
-         * When the function you passed to the callback parameter executes, it receives an AsyncResult object that you can access from the callback
+         * When the function you passed to the callback parameter executes, it receives an `AsyncResult` object that you can access from the callback
          * function's only parameter.
          *
-         * In the callback function passed to the removeHandlerAsync method, you can use the properties of the AsyncResult object to return the
+         * In the callback function passed to the `removeHandlerAsync` method, you can use the properties of the `AsyncResult` object to return the
          * following information.
          *
          * <table>
@@ -8101,11 +8101,11 @@ declare namespace Office {
          *   </tr>
          *   <tr>
          *     <td><code>AsyncResult.error</code></td>
-         *     <td>Access an Error object that provides error information if the operation failed.</td>
+         *     <td>Access an <code>Error</code> object that provides error information if the operation failed.</td>
          *   </tr>
          *   <tr>
          *     <td><code>AsyncResult.asyncContext</code></td>
-         *     <td>Define an item of any type that's returned in the AsyncResult object without being altered.</td>
+         *     <td>Define an item of any type that's returned in the <code>AsyncResult</code> object without being altered.</td>
          *   </tr>
          * </table>
          *
@@ -8115,19 +8115,19 @@ declare namespace Office {
          */
         removeHandlerAsync(eventType: Office.EventType, options?: RemoveHandlerOptions, callback?: (result: AsyncResult<void>) => void): void;
         /**
-         * Removes an event handler for the settingsChanged event.
+         * Removes an event handler for the `settingsChanged` event.
          *
          * @remarks
          *
          * **Requirement set**: {@link https://learn.microsoft.com/javascript/api/requirement-sets/common/office-add-in-requirement-sets#methods-that-arent-part-of-a-requirement-set | Not in a set}
          *
-         * If the optional handler parameter is omitted when calling the removeHandlerAsync method, all event handlers for the specified eventType
+         * If the optional handler parameter is omitted when calling the `removeHandlerAsync` method, all event handlers for the specified `eventType`
          * will be removed.
          *
-         * When the function you passed to the callback parameter executes, it receives an AsyncResult object that you can access from the callback
+         * When the function you passed to the callback parameter executes, it receives an `AsyncResult` object that you can access from the callback
          * function's only parameter.
          *
-         * In the callback function passed to the removeHandlerAsync method, you can use the properties of the AsyncResult object to return the
+         * In the callback function passed to the `removeHandlerAsync` method, you can use the properties of the `AsyncResult` object to return the
          * following information.
          *
          * <table>
@@ -8145,11 +8145,11 @@ declare namespace Office {
          *   </tr>
          *   <tr>
          *     <td><code>AsyncResult.error</code></td>
-         *     <td>Access an Error object that provides error information if the operation failed.</td>
+         *     <td>Access an <code>Error</code> object that provides error information if the operation failed.</td>
          *   </tr>
          *   <tr>
          *     <td><code>AsyncResult.asyncContext</code></td>
-         *     <td>Define an item of any type that's returned in the AsyncResult object without being altered.</td>
+         *     <td>Define an item of any type that's returned in the <code>AsyncResult</code> object without being altered.</td>
          *   </tr>
          * </table>
          *
@@ -8165,11 +8165,11 @@ declare namespace Office {
          * **Requirement set**: {@link https://learn.microsoft.com/javascript/api/requirement-sets/common/office-add-in-requirement-sets#settings | Settings}
          *
          * Any settings previously saved by an add-in are loaded when it is initialized, so during the lifetime of the session you can just use the
-         * set and get methods to work with the in-memory copy of the settings property bag. When you want to persist the settings so that they are
-         * available the next time the add-in is used, use the saveAsync method.
+         * `set` and `get` methods to work with the in-memory copy of the settings property bag. When you want to persist the settings so that they are
+         * available the next time the add-in is used, use the `saveAsync` method.
          *
-         * **Note**: The saveAsync method persists the in-memory settings property bag into the document file. However, the changes to the document file
-         * itself are saved only when the user (or AutoRecover setting) saves the document to the file system. The refreshAsync method is only useful
+         * **Note**: The `saveAsync` method persists the in-memory settings property bag into the document file. However, the changes to the document file
+         * itself are saved only when the user (or AutoRecover setting) saves the document to the file system. The `refreshAsync` method is only useful
          * in coauthoring scenarios when other instances of the same add-in might change the settings and those changes should be made available to
          * all instances.
          *
@@ -8188,11 +8188,11 @@ declare namespace Office {
          *   </tr>
          *   <tr>
          *     <td><code>AsyncResult.error</code></td>
-         *     <td>Access an Error object that provides error information if the operation failed.</td>
+         *     <td>Access an <code>Error</code> object that provides error information if the operation failed.</td>
          *   </tr>
          *   <tr>
          *     <td><code>AsyncResult.asyncContext</code></td>
-         *     <td>Define an item of any type that's returned in the AsyncResult object without being altered.</td>
+         *     <td>Define an item of any type that's returned in the <code>AsyncResult</code> object without being altered.</td>
          *   </tr>
          * </table>
          *
@@ -8208,11 +8208,11 @@ declare namespace Office {
          * **Requirement set**: {@link https://learn.microsoft.com/javascript/api/requirement-sets/common/office-add-in-requirement-sets#settings | Settings}
          *
          * Any settings previously saved by an add-in are loaded when it is initialized, so during the lifetime of the session you can just use the
-         * set and get methods to work with the in-memory copy of the settings property bag. When you want to persist the settings so that they are
-         * available the next time the add-in is used, use the saveAsync method.
+         * `set` and `get` methods to work with the in-memory copy of the settings property bag. When you want to persist the settings so that they are
+         * available the next time the add-in is used, use the `saveAsync` method.
          *
-         * **Note**: The saveAsync method persists the in-memory settings property bag into the document file. However, the changes to the document file
-         * itself are saved only when the user (or AutoRecover setting) saves the document to the file system. The refreshAsync method is only useful
+         * **Note**: The `saveAsync` method persists the in-memory settings property bag into the document file. However, the changes to the document file
+         * itself are saved only when the user (or AutoRecover setting) saves the document to the file system. The `refreshAsync` method is only useful
          * in coauthoring scenarios when other instances of the same add-in might change the settings and those changes should be made available to
          * all instances.
          *
@@ -8231,11 +8231,11 @@ declare namespace Office {
          *   </tr>
          *   <tr>
          *     <td><code>AsyncResult.error</code></td>
-         *     <td>Access an Error object that provides error information if the operation failed.</td>
+         *     <td>Access an <code>Error</code> object that provides error information if the operation failed.</td>
          *   </tr>
          *   <tr>
          *     <td><code>AsyncResult.asyncContext</code></td>
-         *     <td>Define an item of any type that's returned in the AsyncResult object without being altered.</td>
+         *     <td>Define an item of any type that's returned in the <code>AsyncResult</code> object without being altered.</td>
          *   </tr>
          * </table>
          *
@@ -8245,17 +8245,17 @@ declare namespace Office {
         /**
          * Sets or creates the specified setting.
          *
-         * **Important**: Be aware that the Settings.set method affects only the in-memory copy of the settings property bag.
+         * **Important**: Be aware that the `Settings.set` method affects only the in-memory copy of the settings property bag.
          * To make sure that additions or changes to settings will be available to your add-in the next time the document is opened, at some point
-         * after calling the Settings.set method and before the add-in is closed, you must call the Settings.saveAsync method to persist settings in
+         * after calling the `Settings.set` method and before the add-in is closed, you must call the `Settings.saveAsync` method to persist settings in
          * the document.
          *
          * @remarks
          *
          * **Requirement set**: {@link https://learn.microsoft.com/javascript/api/requirement-sets/common/office-add-in-requirement-sets#settings | Settings}
          *
-         * The set method creates a new setting of the specified name if it does not already exist, or sets an existing setting of the specified name
-         * in the in-memory copy of the settings property bag. After you call the Settings.saveAsync method, the value is stored in the document as
+         * The `set` method creates a new setting of the specified name if it does not already exist, or sets an existing setting of the specified name
+         * in the in-memory copy of the settings property bag. After you call the `Settings.saveAsync` method, the value is stored in the document as
          * the serialized JSON representation of its data type.
          *
          * @param settingName The case-sensitive name of the setting to set or create.
@@ -17926,11 +17926,11 @@ declare namespace Office {
          *
          * <table>
          *  <tr><th>Event</th><th>Description</th><th>Minimum requirement set</th></tr>
-         *  <tr><td>`DragAndDropEvent`</td><td>A message or file attachment in the Outlook client window is dragged then dropped into the task pane of an add-in.
-         *   This event is only supported in Outlook on the web and the new Outlook on Windows.</td><td>{@link https://learn.microsoft.com/javascript/api/requirement-sets/outlook/outlook-requirement-set-1-5 | 1.5}</td></tr>
-         *  <tr><td>`ItemChanged`</td><td>A different Outlook item is selected for viewing while the task pane is pinned.</td><td>{@link https://learn.microsoft.com/javascript/api/requirement-sets/outlook/outlook-requirement-set-1-5 | 1.5}</td></tr>
-         *  <tr><td>`OfficeThemeChanged`</td><td>The OfficeTheme is changed in Outlook.</td><td>{@link https://learn.microsoft.com/javascript/api/requirement-sets/outlook/outlook-requirement-set-1-14 | 1.14}</td></tr>
-         *  <tr><td>`SelectedItemsChanged`</td><td>One or more messages are selected or deselected.</td><td>{@link https://learn.microsoft.com/javascript/api/requirement-sets/outlook/outlook-requirement-set-1-13 | 1.13}</td></tr>
+         *  <tr><td><code>DragAndDropEvent</code></td><td>A message or file attachment in the Outlook client window is dragged then dropped into the task pane of an add-in.
+         *   This event is only supported in Outlook on the web and the new Outlook on Windows.</td><td><a href="https://learn.microsoft.com/javascript/api/requirement-sets/outlook/outlook-requirement-set-1-5">1.5</a></td></tr>
+         *  <tr><td><code>ItemChanged</code></td><td>A different Outlook item is selected for viewing while the task pane is pinned.</td><td><a href="https://learn.microsoft.com/javascript/api/requirement-sets/outlook/outlook-requirement-set-1-5">1.5</a></td></tr>
+         *  <tr><td><code>OfficeThemeChanged</code></td><td>The OfficeTheme is changed in Outlook.</td><td><a href="https://learn.microsoft.com/javascript/api/requirement-sets/outlook/outlook-requirement-set-1-14">1.14</a></td></tr>
+         *  <tr><td><code>SelectedItemsChanged</code></td><td>One or more messages are selected or deselected.</td><td><a href="https://learn.microsoft.com/javascript/api/requirement-sets/outlook/outlook-requirement-set-1-13">1.13</a></td></tr>
          * </table>
          *
          * @param eventType - The event that should invoke the handler.
@@ -17955,11 +17955,11 @@ declare namespace Office {
          *
          * <table>
          *  <tr><th>Event</th><th>Description</th><th>Minimum requirement set</th></tr>
-         *  <tr><td>`DragAndDropEvent`</td><td>A message or file attachment in the Outlook client window is dragged then dropped into the task pane of an add-in.
-         *   This event is only supported in Outlook on the web and the new Outlook on Windows.</td><td>{@link https://learn.microsoft.com/javascript/api/requirement-sets/outlook/outlook-requirement-set-1-5 | 1.5}</td></tr>
-         *  <tr><td>`ItemChanged`</td><td>A different Outlook item is selected for viewing while the task pane is pinned.</td><td>{@link https://learn.microsoft.com/javascript/api/requirement-sets/outlook/outlook-requirement-set-1-5 | 1.5}</td></tr>
-         *  <tr><td>`OfficeThemeChanged`</td><td>The OfficeTheme is changed in Outlook.</td><td>{@link https://learn.microsoft.com/javascript/api/requirement-sets/outlook/outlook-requirement-set-1-14 | 1.14}</td></tr>
-         *  <tr><td>`SelectedItemsChanged`</td><td>One or more messages are selected or deselected.</td><td>{@link https://learn.microsoft.com/javascript/api/requirement-sets/outlook/outlook-requirement-set-1-13 | 1.13}</td></tr>
+         *  <tr><td><code>DragAndDropEvent</code></td><td>A message or file attachment in the Outlook client window is dragged then dropped into the task pane of an add-in.
+         *   This event is only supported in Outlook on the web and the new Outlook on Windows.</td><td><a href="https://learn.microsoft.com/javascript/api/requirement-sets/outlook/outlook-requirement-set-1-5">1.5</a></td></tr>
+         *  <tr><td><code>ItemChanged</code></td><td>A different Outlook item is selected for viewing while the task pane is pinned.</td><td><a href="https://learn.microsoft.com/javascript/api/requirement-sets/outlook/outlook-requirement-set-1-5">1.5</a></td></tr>
+         *  <tr><td><code>OfficeThemeChanged</code></td><td>The OfficeTheme is changed in Outlook.</td><td><a href="https://learn.microsoft.com/javascript/api/requirement-sets/outlook/outlook-requirement-set-1-14">1.14</a></td></tr>
+         *  <tr><td><code>SelectedItemsChanged</code></td><td>One or more messages are selected or deselected.</td><td><a href="https://learn.microsoft.com/javascript/api/requirement-sets/outlook/outlook-requirement-set-1-13">1.13</a></td></tr>
          * </table>
          *
          * @param eventType - The event that should invoke the handler.
@@ -18851,11 +18851,11 @@ declare namespace Office {
          *
          * <table>
          *  <tr><th>Event</th><th>Description</th><th>Minimum requirement set</th></tr>
-         *  <tr><td>`DragAndDropEvent`</td><td>A message or file attachment in the Outlook client window is dragged then dropped into the task pane of an add-in.
-         *   This event is only supported in Outlook on the web and the new Outlook on Windows.</td><td>{@link https://learn.microsoft.com/javascript/api/requirement-sets/outlook/outlook-requirement-set-1-5 | 1.5}</td></tr>
-         *  <tr><td>`ItemChanged`</td><td>A different Outlook item is selected for viewing while the task pane is pinned.</td><td>{@link https://learn.microsoft.com/javascript/api/requirement-sets/outlook/outlook-requirement-set-1-5 | 1.5}</td></tr>
-         *  <tr><td>`OfficeThemeChanged`</td><td>The OfficeTheme is changed in Outlook.</td><td>{@link https://learn.microsoft.com/javascript/api/requirement-sets/outlook/outlook-requirement-set-1-14 | 1.14}</td></tr>
-         *  <tr><td>`SelectedItemsChanged`</td><td>One or more messages are selected or deselected.</td><td>{@link https://learn.microsoft.com/javascript/api/requirement-sets/outlook/outlook-requirement-set-1-13 | 1.13}</td></tr>
+         *  <tr><td><code>DragAndDropEvent</code></td><td>A message or file attachment in the Outlook client window is dragged then dropped into the task pane of an add-in.
+         *   This event is only supported in Outlook on the web and the new Outlook on Windows.</td><td><a href="https://learn.microsoft.com/javascript/api/requirement-sets/outlook/outlook-requirement-set-1-5">1.5</a></td></tr>
+         *  <tr><td><code>ItemChanged</code></td><td>A different Outlook item is selected for viewing while the task pane is pinned.</td><td><a href="https://learn.microsoft.com/javascript/api/requirement-sets/outlook/outlook-requirement-set-1-5">1.5</a></td></tr>
+         *  <tr><td><code>OfficeThemeChanged</code></td><td>The OfficeTheme is changed in Outlook.</td><td><a href="https://learn.microsoft.com/javascript/api/requirement-sets/outlook/outlook-requirement-set-1-14">1.14</a></td></tr>
+         *  <tr><td><code>SelectedItemsChanged</code></td><td>One or more messages are selected or deselected.</td><td><a href="https://learn.microsoft.com/javascript/api/requirement-sets/outlook/outlook-requirement-set-1-13">1.13</a></td></tr>
          * </table>
          *
          * @param eventType - The event that should revoke the handler.
@@ -18878,11 +18878,11 @@ declare namespace Office {
          *
          * <table>
          *  <tr><th>Event</th><th>Description</th><th>Minimum requirement set</th></tr>
-         *  <tr><td>`DragAndDropEvent`</td><td>A message or file attachment in the Outlook client window is dragged then dropped into the task pane of an add-in.
-         *   This event is only supported in Outlook on the web and the new Outlook on Windows.</td><td>{@link https://learn.microsoft.com/javascript/api/requirement-sets/outlook/outlook-requirement-set-1-5 | 1.5}</td></tr>
-         *  <tr><td>`ItemChanged`</td><td>A different Outlook item is selected for viewing while the task pane is pinned.</td><td>{@link https://learn.microsoft.com/javascript/api/requirement-sets/outlook/outlook-requirement-set-1-5 | 1.5}</td></tr>
-         *  <tr><td>`OfficeThemeChanged`</td><td>The OfficeTheme is changed in Outlook.</td><td>{@link https://learn.microsoft.com/javascript/api/requirement-sets/outlook/outlook-requirement-set-1-14 | 1.14}</td></tr>
-         *  <tr><td>`SelectedItemsChanged`</td><td>One or more messages are selected or deselected.</td><td>{@link https://learn.microsoft.com/javascript/api/requirement-sets/outlook/outlook-requirement-set-1-13 | 1.13}</td></tr>
+         *  <tr><td><code>DragAndDropEvent</code></td><td>A message or file attachment in the Outlook client window is dragged then dropped into the task pane of an add-in.
+         *   This event is only supported in Outlook on the web and the new Outlook on Windows.</td><td><a href="https://learn.microsoft.com/javascript/api/requirement-sets/outlook/outlook-requirement-set-1-5">1.5</a></td></tr>
+         *  <tr><td><code>ItemChanged</code></td><td>A different Outlook item is selected for viewing while the task pane is pinned.</td><td><a href="https://learn.microsoft.com/javascript/api/requirement-sets/outlook/outlook-requirement-set-1-5">1.5</a></td></tr>
+         *  <tr><td><code>OfficeThemeChanged</code></td><td>The OfficeTheme is changed in Outlook.</td><td><a href="https://learn.microsoft.com/javascript/api/requirement-sets/outlook/outlook-requirement-set-1-14">1.14</a></td></tr>
+         *  <tr><td><code>SelectedItemsChanged</code></td><td>One or more messages are selected or deselected.</td><td><a href="https://learn.microsoft.com/javascript/api/requirement-sets/outlook/outlook-requirement-set-1-13">1.13</a></td></tr>
          * </table>
          *
          * @param eventType - The event that should revoke the handler.
